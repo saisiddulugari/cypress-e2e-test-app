@@ -26,6 +26,6 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: saisiddulugari/cypress-e2e-tests
           event-type: my-event
-          client-payload: '${{ needs.wait_for_vercel.outputs.preview_url }}", "sha": "${{ github.sha }}"}'
+          client-payload: '${{steps.waitFor200.outputs.preview_url}}, "sha": "${{ github.sha }}"}'
 
 
