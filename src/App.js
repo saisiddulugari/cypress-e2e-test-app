@@ -10,7 +10,7 @@ export function Todo({ todo, index, toggleTodo, removeTodo }) {
       className="todo"
       style={{ textDecoration: todo.isCompleted ? 'line-through' : '' }}
     >
-      {todo.text}
+      {todo.text}tututu
 
       <div>
         <button data-cy={cyAttribute} onClick={() => toggleTodo(index)}>
