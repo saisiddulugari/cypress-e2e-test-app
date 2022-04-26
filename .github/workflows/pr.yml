@@ -7,15 +7,16 @@ jobs:
     outputs:
       preview_url: ${{ steps.waitForVercelPreviewDeployment.outputs.url }}
     steps:
-      - name: Wait for Vercel preview deployment to be ready
-        uses: patrickedqvist/wait-for-vercel-preview@master
-        id: waitForVercelPreviewDeployment
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 120
+    - name: Waiting for 200 from the Vercel Preview
+      uses: patrickedqvist/wait-for-vercel-preview@v1.2.0
+      id: waitFor200
+      with:
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+        max_timeout: 60
 
   tests:
     name: End-to-end tests is another repo
+    needs: wait_for_vercel
     runs-on: ubuntu-latest
     steps:
       # https://github.com/marketplace/actions/github-status-action
