@@ -1,8 +1,22 @@
 name: pull
 on: pull_request
 jobs:
-  set-status:
-    runs-on: ubuntu-20.04
+  wait_for_vercel:
+    name: Wait for vercel
+    runs-on: ubuntu-latest
+    outputs:
+      preview_url: ${{ steps.waitForVercelPreviewDeployment.outputs.url }}
+    steps:
+      - name: Wait for Vercel preview deployment to be ready
+        uses: patrickedqvist/wait-for-vercel-preview@master
+        id: waitForVercelPreviewDeployment
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 120
+
+  tests:
+    name: End-to-end tests is another repo
+    runs-on: ubuntu-latest
     steps:
       # https://github.com/marketplace/actions/github-status-action
       - name: Repository Dispatch
@@ -11,4 +25,6 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: saisiddulugari/cypress-e2e-tests
           event-type: my-event
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          client-payload: '${{ needs.wait_for_vercel.outputs.preview_url }}", "sha": "${{ github.sha }}"}'
+
+
