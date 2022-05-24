@@ -28,7 +28,7 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: saisiddulugari/cypress-e2e-tests
           event-type: my-event
-          client-payload: '{"sai": "${{ needs.wait_for_vercel.outputs.preview_url }}", "sha": "${{ github.event.pull_request.head.sha }}"}'
+          client-payload: '{"sai": "${{ needs.wait_for_vercel.outputs.preview_url }}", "sha": "${{ github.event.pull_request.head.sha }}, "tags": "@visible"}'
       - name: set pending status
         uses: Sibz/github-status-action@v1
         with:
