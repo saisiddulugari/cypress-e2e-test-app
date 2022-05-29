@@ -10,7 +10,7 @@ export function Todo({ todo, index, toggleTodo, removeTodo }) {
       className="todo"
       style={{ textDecoration: todo.isCompleted ? 'line-through' : '' }}
     >
-      {todo.text}"test123"
+      {todo.text}
 
       <div>
         <button data-cy={cyAttribute} onClick={() => toggleTodo(index)}>
@@ -59,7 +59,7 @@ export const toggleOneTodo = (todos, index) => {
 function App() {
   const [todos, setTodos] = useState([
     {
-      text: 'Learn about React',
+      text: 'test2134',
       isCompleted: false,
     },
     {
