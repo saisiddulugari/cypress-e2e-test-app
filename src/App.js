@@ -59,7 +59,7 @@ export const toggleOneTodo = (todos, index) => {
 function App() {
   const [todos, setTodos] = useState([
     {
-      text: 'Learn about React',
+      text: 'nope',
       isCompleted: false,
     },
     {
